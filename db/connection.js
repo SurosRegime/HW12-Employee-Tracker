@@ -80,10 +80,10 @@ async function viewAllEmployees(connection) {
       roles.title,
       departments.name AS department,
       roles.salary,
-      CONCAT(managers.first_name, ' ', managers.last_name) AS manager
-    FROM employees
-    JOIN roles ON employees.role_id = roles.id
-    JOIN departments ON roles.department_id = departments.id
+      CONCAT(managers.first_name, ' ', managers.last_name) AS manager,
+    FROM employees,
+    JOIN roles ON employees.role_id = roles.id,
+    JOIN departments ON roles.department_id = departments.id,
     LEFT JOIN employees managers ON employees.manager_id = managers.id
   );
   console.table(rows);
